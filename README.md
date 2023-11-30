@@ -26,7 +26,7 @@ So the script basically just updates the `.env` file and then runs the normal `d
 Most of the code is just sanity checks to ensure that nothing unexpected has changed (and if it has, it does nothing and exits with an error message).
 
 ## Installation
-You can just clone this repo into the directory where your `docker-compose.yml` file is and run the script from there, maybe you need to set the executable flag first.
+You can just clone this repo and run the `updater.sh` script from where your `docker-compose.yml` file is.
 
 In your `docker-compose.yml` file you need to change the image variable to this:
 ```yaml
@@ -34,6 +34,29 @@ image: ${CADVISOR_LATEST_IMAGE}
 ```
 
 This variable is provided by the `.env` file.
+
+### Example
+```bash
+cd /docker/cadvisor # where your docker-compose.yml file is
+git clone https://github.com/HoroTW/cadvisor-latest-stable-updater
+# just to show how the files are structured
+# $ tree -a -L 2
+# .
+# ├── cadvisor-latest-stable-updater
+# │   ├── .env.example
+# │   ├── .git
+# │   ├── LICENSE
+# │   ├── README.md
+# │   ├── Screenshot.png
+# │   └── updater.sh
+# ├── docker-compose.yml
+# └── .env
+
+# run the updater:
+# $ bash cadvisor-latest-stable-updater/updater.sh
+# Latest release tag from github is v0.47.2
+# Current Image is already the latest - no need to update.
+```
 
 ## Usage
 ```bash
